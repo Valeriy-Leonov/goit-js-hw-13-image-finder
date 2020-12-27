@@ -5,6 +5,8 @@ const debounce = require('lodash.debounce');
 const container = document.querySelector('.block-country__list');
 
 function fetchCountries(searchQuery) {
+  `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${searchQuery}&page=номер_страницы&per_page=12&key=19680039-e1175c59e60ae330767a22687`
+  
   fetch(`https://restcountries.eu/rest/v2/name/${searchQuery}`)
     .then(response => response.status === 200 ? response.json() : response)
       .then(data => {
@@ -14,6 +16,28 @@ function fetchCountries(searchQuery) {
         });
         container.innerHTML = '';
         } else if (data.length === 1) {
+          <div class="photo-card">
+  <img src="" alt="" />
+
+  <div class="stats">
+    <p class="stats-item">
+      <i class="material-icons">thumb_up</i>
+      1108
+    </p>
+    <p class="stats-item">
+      <i class="material-icons">visibility</i>
+      320321
+    </p>
+    <p class="stats-item">
+      <i class="material-icons">comment</i>
+      129
+    </p>
+    <p class="stats-item">
+      <i class="material-icons">cloud_download</i>
+      176019
+    </p>
+  </div>
+</div>
          const name = `<h1>${data[0]['name']}</h1>`;
         const capital = `<p>Capital: ${data[0]['capital']}</p>`;
         const population = `<p>Population: ${data[0]['population']}</p>`;

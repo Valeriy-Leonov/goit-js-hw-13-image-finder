@@ -1,48 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Homework 12</title>
-    <link
-      href="data:image/x-icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEhEQAFRFNwCF1tUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQEQEQEQAAABABABABAAAAEAEAEAEBAAAREREREQEAABERERERAQAAEREREREBAAAREREREQEAABEREREREQABEREAAAAAAAEyMQAAAAAAASMhAAAAAAABEREAAAAAAAEAAQAAAAAAAQABEAAAAAABEAAAAAAAD//wAAyScAAO23AADttQAA4AUAAOAFAADgBQAA4AUAAOABAADB/wAAwf8AAMH/AADB/wAA3f8AANz/AADP/wAA"
-      rel="icon" type="image/x-icon" />
 
-    <!-- Don't forget to delete this style tag. -->
-    <style>
-      body {
-        min-height: 100vh;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Homework 12</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link
+    href="data:image/x-icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEhEQAFRFNwCF1tUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQEQEQEQAAABABABABAAAAEAEAEAEBAAAREREREQEAABERERERAQAAEREREREBAAAREREREQEAABEREREREQABEREAAAAAAAEyMQAAAAAAASMhAAAAAAABEREAAAAAAAEAAQAAAAAAAQABEAAAAAABEAAAAAAAD//wAAyScAAO23AADttQAA4AUAAOAFAADgBQAA4AUAAOABAADB/wAAwf8AAMH/AADB/wAA3f8AANz/AADP/wAA"
+    rel="icon" type="image/x-icon" />
 
-      .intro {
-        text-align: center;
-      }
+  <!-- Don't forget to delete this style tag. -->
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-      .intro h1 {
-        margin-top: 0;
-        font-weight: 500;
-        font-size: 40px;
-      }
+    .intro {
+      text-align: center;
+    }
 
-      .intro img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-      }
-    </style>
-  </head>
+    .intro h1 {
+      margin-top: 0;
+      font-weight: 500;
+      font-size: 40px;
+    }
 
-  <body>
-    <div class="block-country__control">
-      <input class="block-country__input" type="text" id="country-input" />
-      <div class="block-country__list">
-    
-      </div>
-    </div>
-      </body>
+    .intro img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <form class="search-form" id="search-form">
+    <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
+  </form>
+  <ul class="gallery">
+    <!-- Список <li> с карточками изображений -->
+  </ul>
+
+</body>
+
 </html>
