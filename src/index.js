@@ -2,56 +2,57 @@ import './styles.css';
 import { alert, defaultModules } from '@pnotify/core';
 const debounce = require('lodash.debounce');
 
-const container = document.querySelector('.block-country__list');
+const apiKey = '19680039-e1175c59e60ae330767a22687';
 
-function fetchCountries(searchQuery) {
-  `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${searchQuery}&page=номер_страницы&per_page=12&key=19680039-e1175c59e60ae330767a22687`
+let page = 1;
+let globSerchQuery = '';
+
+const container = document.querySelector('.gallery');
+
+function getUrl() {
+  return `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${globSerchQuery}&page=${page}&per_page=12&key=${apiKey}`;
+}
+
+function loadMore() {
+  fetchData(globSerchQuery);
+}
+
+window.loadMore = loadMore;
+
+function fetchData(searchQuery) {
+  if (globSerchQuery === searchQuery) {
+    page += 1;
+  } else {
+    page = 1;
+  }
+  globSerchQuery = searchQuery;
+  const url = getUrl();
   
-  fetch(`https://restcountries.eu/rest/v2/name/${searchQuery}`)
+  fetch(url)
     .then(response => response.status === 200 ? response.json() : response)
-      .then(data => {
+    .then(data => {
+      console.log('test data!', data);
         if (data.status === 404) {
           alert({
   text: 'Zero matches found. Plese enter a more specific query!'
         });
         container.innerHTML = '';
-        } else if (data.length === 1) {
-          <div class="photo-card">
-  <img src="" alt="" />
+        } else if (data.hits.length) {
+          let allContent = '';
+          for (let item of data.hits) {
+            const thumbUp = `<p class="stats-item"><i class="material-icons">thumb_up</i>${item.likes}</p>`;
+            const visibility = ` <p class="stats-item"><i class="material-icons">visibility</i>${item.views}</p>`;
+            const comment = ` <p class="stats-item"><i class="material-icons">comment</i>${item.comments}</p>`;
+            const cloud_download = `<p class="stats-item"><i class="material-icons">cloud_download</i>${item.downloads}</p>`;
+            const content = `<li><div class="photo-card"><img src="${item.webformatURL}" alt="" /><div class="stats">
+                            ${thumbUp}${visibility}${comment}${cloud_download}</div></div></li>`;
+            allContent += content;
+          }
 
-  <div class="stats">
-    <p class="stats-item">
-      <i class="material-icons">thumb_up</i>
-      1108
-    </p>
-    <p class="stats-item">
-      <i class="material-icons">visibility</i>
-      320321
-    </p>
-    <p class="stats-item">
-      <i class="material-icons">comment</i>
-      129
-    </p>
-    <p class="stats-item">
-      <i class="material-icons">cloud_download</i>
-      176019
-    </p>
-  </div>
-</div>
-         const name = `<h1>${data[0]['name']}</h1>`;
-        const capital = `<p>Capital: ${data[0]['capital']}</p>`;
-        const population = `<p>Population: ${data[0]['population']}</p>`;
-        const languages = `<ul>Languages: ${data[0]['languages'].map(value => '<li>' + value['name'] + '</li>').join('')}</ul>`;
-        const flag = `<img width="100" height="100" src=${data[0]['flag']} />`
-        container.innerHTML = `${name}${flag}${capital}${population}${languages}`;
-      } else if (data.length <= 10) {
-        container.innerHTML = `<h1>${data.map(value => '<li>' + value['name'] + '</li>').join('')}</ul>`;
+          allContent += `<button class="load-more" onclick="window.loadMore()">Load More</button>`
+          
 
-      } else if (data.length > 10) {
-        alert({
-          text: 'Too many matches found. Plese enter a more specific query!'
-        });
-        container.innerHTML = '';
+          container.innerHTML = allContent;
       } else { 
         alert({
   text: 'Zero matches found. Plese enter a more specific query!'
@@ -62,10 +63,10 @@ function fetchCountries(searchQuery) {
 };
 
   
-const input = document.querySelector('#country-input');
+const input = document.querySelector('input');
 
 input.addEventListener('input', debounce(function (event) {
-  fetchCountries(event.target.value);
+  fetchData(event.target.value);
  }, 500))
 
 
